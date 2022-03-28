@@ -34,37 +34,37 @@ body{
 .leds-container .col:nth-child(1){
     flex-basis: 50%;
     background-color: #ce1131;
-    border: darkslategrey solid 0.02rem;
+    border: black solid 0.02rem;
 }
 .sides{
-    background-color: aquamarine;
+    /*background-color: aquamarine;*/
     flex-grow: 1;
     display: flex;    
 }
 .middle-side{
     flex-basis: 3%;
     background-color: #ce1131;
-    border: darkslategrey solid 0.02rem;
+    border: black solid 0.02rem;
     border-top: none;
     flex-direction: column;
 }
 .left-side{
     flex-basis: 50%;
     background-color: #ce1131;
-    border: darkslategrey solid 0.02rem;
+    border: black solid 0.02rem;
     border-top: none;
 }
 .right-side{
     flex-grow: 1;
     background-color: #ce1131;
-    border: darkslategrey solid 0.02rem;
+    border: black solid 0.02rem;
     border-left: none;
     justify-content: space-between;
 }
 /*Middle side*/
 .middle-side .row{
     height: 33.5%;
-    border: darkslategrey solid 0.02rem;
+    border: black solid 0.02rem;
     border-right: none;
     border-left: none;
     border-bottom: none;
