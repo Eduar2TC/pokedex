@@ -10,8 +10,7 @@ const fetchPokemon = (name) =>{
         }
     ).then( (data) =>{
         console.log(data);
-        getData(data);
-        //changeImage(data.sprites.other["official-artwork"].front_default );
+        setData( getData(data) );
         /*screen.innerHTML = `<div>
                                 <img style= "transform: scale(200%, 200%); image-rendering: pixelated; " src="${data.sprites.front_default}">
                             </div>`;
@@ -35,26 +34,54 @@ let changeImage = (url, defaulStyle = "/*transform: scale(200%, 200%);*/ height:
     image.src = url;
     image.style = defaulStyle;
 }
+const setData = ( data ) => {
+    const type = document.querySelector('.statistics-container .top span');
+    const tipe1 = document.querySelector('.tipe1');
+    const tipe2 = document.querySelector('.tipe2');
+    
+    const hp = document.querySelector('.ps');
+    const attack = document.querySelector('.atk');
+    const def = document.querySelector('.def');
+    const saAtk = document.querySelector('.sa-atk');
+    const saDef = document.querySelector('.sa-def');
+    const speed = document.querySelector('.sp');
+
+    const height = document.querySelector('.height');
+    const weight = document.querySelector('.weight');
+
+    changeImage(data.img);
+    tipe1.innerText = data.abilities[0];
+    tipe2.innerText = data.abilities[1];
+    type.innerText = data.type;
+    
+    hp.innerText = data.stats.hp.base_stat;
+    attack.innerText = data.stats.attack.base_stat;
+    def.innerText = data.stats.defense.base_stat;
+    saAtk.innerText = data.stats["special-attack"].base_stat;
+    saDef.innerText = data.stats["special-defense"].base_stat;
+    speed.innerText = data.stats.speed.base_stat;
+
+    height.innerText = data.height;
+    weight.innerText = data.weight;
+}
 const getData = ( data )=>{
-    //name, types, abilities, weight, heght, stats
-    let obj ={};
+    let objet ={};
     const name = data.name;
     const height = data.height;
     const weight = data.weight;
     const type =  getType( data.types );
     const abilities = getAbilities( data.abilities ); //array
     const stats = getStats( data.stats ); //array
-
-    obj['name'] = name;
-    obj['height'] = height;
-    obj['weight'] = weight;
-    obj['type'] = type; 
-    obj['abilities'] = abilities;
-    obj['stats'] = stats;
-    // const t = document.querySelector('.statistics-container .top span');
-    // t.innerText = type;
-    console.log(obj);
-
+    
+    objet['img'] = data.sprites.other["official-artwork"].front_default;
+    objet['name'] = name;
+    objet['height'] = height;
+    objet['weight'] = weight;
+    objet['type'] = type; 
+    objet['abilities'] = abilities;
+    objet['stats'] = stats;
+    console.log(objet);
+    return objet;
 }
 const getType = ( types ) => {
     return types[0].type.name; 
