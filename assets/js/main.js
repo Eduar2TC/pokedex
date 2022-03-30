@@ -4,6 +4,13 @@ const fetchPokemon = (name) =>{
         (res) =>{
             if( res.status != '200' ){
                 changeImage('assets/img/err.gif', null);
+                const img = document.querySelector('.screen div:nth-child(1) img');
+                img.style.objetFit = 'cover';
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.backgroundPosition = '50% 50%';
+                img.style.imageRendering = 'optimizeQuality';
+
             }else{
                 return res.json();
             }
@@ -28,6 +35,9 @@ const send = buttonSend.addEventListener('click', ()=>{
         fetchPokemon(input.value.toLowerCase());
     }else{
         changeImage('assets/img/err.gif', null);
+        const img = document.querySelector('.screen div:nth-child(1) img');
+        img.style.cssText = 'object-fit:cover; width: 100%; height: 100%; background-position: 50 % 50 %; image-rendering: optimizeQuality;';
+
     }
 });
 let changeImage = (url, defaulStyle = "/*transform: scale(200%, 200%);*/ height: 50%; width: 50%; object-fit: contain; image-rendering: hight-quality; ") =>{
@@ -65,7 +75,7 @@ const setData = ( data ) => {
     weight.innerText = data.weight;
 }
 const getData = ( data )=>{
-    let objet ={};
+    let object ={};
     const name = data.name;
     const height = data.height;
     const weight = data.weight;
@@ -73,15 +83,14 @@ const getData = ( data )=>{
     const abilities = getAbilities( data.abilities ); //array
     const stats = getStats( data.stats ); //array
     
-    objet['img'] = data.sprites.other["official-artwork"].front_default;
-    objet['name'] = name;
-    objet['height'] = height;
-    objet['weight'] = weight;
-    objet['type'] = type; 
-    objet['abilities'] = abilities;
-    objet['stats'] = stats;
-    console.log(objet);
-    return objet;
+    object['img'] = data.sprites.other["official-artwork"].front_default;
+    object['name'] = name;
+    object['height'] = parseFloat( height ).toFixed(2);
+    object['weight'] = parseFloat( weight ).toFixed(2);
+    object['type'] = type; 
+    object['abilities'] = abilities;
+    object['stats'] = stats;
+    return object;
 }
 const getType = ( types ) => {
     return types[0].type.name; 
@@ -89,35 +98,35 @@ const getType = ( types ) => {
 const getStats = ( stats ) => {
     return {
         'hp':{
-            'base_stat': stats[0].base_stat,
+            'base_stat': parseFloat( stats[0].base_stat).toFixed(2),
             'effort': stats[0].effort
         },
         'attack':{
-            'base_stat': stats[1].base_stat,
+            'base_stat': parseFloat( stats[1].base_stat).toFixed(2),
             'effort': stats[1].effort
         },
         'defense':{
-            'base_stat': stats[2].base_stat,
+            'base_stat': parseFloat( stats[2].base_stat).toFixed(2),
             'effort': stats[2].effort
         },
         'special-attack':{
-            'base_stat': stats[3].base_stat,
+            'base_stat': parseFloat( stats[3].base_stat).toFixed(2),
             'effort': stats[3].effort
         },
         'special-defense':{
-            'base_stat': stats[4].base_stat,
+            'base_stat': parseFloat( stats[4].base_stat).toFixed(2),
             'effort': stats[4].effort
         },
         'speed':{
-            'base_stat': stats[5].base_stat,
+            'base_stat': parseFloat( stats[5].base_stat).toFixed(2),
             'effort': stats[5].effort
         }
     };
 }
 const getAbilities = ( abilities ) => {
-    let obj = [];
+    let object = [];
     for( var i = 0; i < abilities.length; i++ ){
-        obj.push(abilities[i].ability.name);
+        object.push(abilities[i].ability.name);
     }
-    return obj;
+    return object;
 }

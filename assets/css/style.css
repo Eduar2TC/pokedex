@@ -114,6 +114,11 @@ body{
     justify-content: center;
 }
 .screen div:nth-child(1) img{
+    /*object-fit:cover;
+    width: 100%;
+    height: 100%;
+    background-position: 50% 50%;
+    image-rendering: optimizeQuality;*/
     /* transform: scale(200%, 200%);
      image-rendering: pixelated; */
 }
@@ -345,3 +350,21 @@ body{
         width: 100%;
     }
 }
+@media (max-width: 575.98px) {
+    .container{
+        height: 130%;
+    }
+    .sides{
+        flex-direction: column-reverse;
+    }
+    .middle-side{
+        display: flex;
+        flex-direction: row;
+    }
+    .middle-side .row{
+        height: 100%;
+        width: 33.5%;
+        border-right: black solid 0.02rem;;
+    }
+
+ }
