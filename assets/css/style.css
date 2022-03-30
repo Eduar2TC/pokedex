@@ -15,7 +15,6 @@ body{
 .container{
     width: 70%;
     height: 80%;
-    background-color: gray;
     padding: 1.5rem;
 }
 .pokedex{
